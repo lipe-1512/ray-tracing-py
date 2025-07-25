@@ -12,7 +12,7 @@ class RayCasting:
         self.total_pixels = self.vres * self.hres
         self.processed_pixels = 0
 
-    def __generate_image__(self, targets, distancia, camera: Camera):
+    def __generate_image__(self, targets, luzes, distancia, camera: Camera):
         u = camera.u
         v = camera.v
         w = camera.w
@@ -27,7 +27,7 @@ class RayCasting:
                         + u.__mul_escalar__(2 * 0.5 * (i / self.vres - 0.5)) #vetor vertical da câmera
                     ),
                 )
-                color = camera.__intersect__(ray, targets) #pega a cor de um objeto que o raio colidir
+                color = camera.__intersect__(ray, targets, luzes) #pega a cor de um objeto que o raio colidir
                 self.image[i, j] = color
                 self.processed_pixels += 1
                 

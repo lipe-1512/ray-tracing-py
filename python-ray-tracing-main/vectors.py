@@ -30,6 +30,14 @@ class Ponto:
 class Vetor(Ponto):
     """Representa um vetor"""
 
+    def __add__(self, v):
+        """A soma de dois vetores resulta em um novo vetor."""
+        return Vetor(self.x + v.x, self.y + v.y, self.z + v.z)
+
+    def __sub__(self, v):
+        """A subtração de dois vetores resulta em um novo vetor."""
+        return Vetor(self.x - v.x, self.y - v.y, self.z - v.z)
+
     def __mul__(self, p): #prod interno 
         return self.x * p.x + self.y * p.y + self.z * p.z
 
