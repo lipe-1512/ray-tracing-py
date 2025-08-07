@@ -1,15 +1,6 @@
 import cv2 as cv
 import numpy as np
 from vectors import Ponto, Vetor
-<<<<<<< HEAD
-from phong_with_args import phong
-from fonte_de_luz import Luz
-from ray import Ray
-
-
-class Camera:
-    def __init__(self, target, position, up, vres=300, hres=300):
-=======
 from phong_with_args import phong, clamp
 from fonte_de_luz import Luz
 from ray import Ray
@@ -37,38 +28,10 @@ class Ray:
 class Camera:
     def __init__(self, target: "Ponto", position: "Ponto", up: "Vetor", vres: int = 300, hres: int = 300):
         #inicializa a câmera c/ pos, alvo e vetor up
->>>>>>> 78a0741443c21e1eb073d44a292ff0f27b925fd6
         self.position = position
         self.target = target
         self.up = up
 
-<<<<<<< HEAD
-        self.w: "Vetor" = (self.target - self.position).__normalize__()
-        self.v: "Vetor" = self.up.__cross__(self.w).__normalize__()
-        self.u: "Vetor" = self.w.__cross__(self.v).__mul_escalar__(-1)
-        self.vres = vres
-        self.hres = hres
-
-    def __intersect__(self, ray: "Ray", targets: list):
-        smallest_distance = float("inf")
-        color = [0, 0, 0]  # tudo começa preto
-
-        for target in targets:
-            intersection = target.__intersect_line__(ray.origin, ray.direction)
-            if intersection:
-                distance_vetor = Vetor(intersection[0], intersection[1], intersection[2])
-                distance = ray.origin.__distance__(distance_vetor)
-                if distance < smallest_distance:
-                    smallest_distance = distance
-                    color = phong(
-                        target,
-                        [Luz(0, 30, 0, [255, 255, 255])],
-                        Ponto(intersection[0], intersection[1], intersection[2]),
-                        self.position,
-                        targets,
-                    )
-        return color
-=======
         #vetor w aponta p/ o alvo (target)
         self.w: "Vetor" = self.target.__sub__(self.position)
         #vetor v é o "right", ortogonal a w e up
@@ -164,4 +127,3 @@ class Camera:
         
         #se não acertou nada, retorna a cor de fundo (preto)
         return [0, 0, 0]
->>>>>>> 78a0741443c21e1eb073d44a292ff0f27b925fd6
