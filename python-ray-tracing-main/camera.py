@@ -6,25 +6,6 @@ from fonte_de_luz import Luz
 from ray import Ray
 from entidades import Esfera
 
-class Ray:
-    def __init__(self, origin: "Ponto", direction: "Vetor"):
-        #define a origem e a direção do raio
-        self.origin = origin
-        self.direction = direction
-
-    def __str__(self): return f"Ray({self.origin}, {self.direction})"
-    def __repr__(self): return self.__str__()
-    
-    #pega um ponto no raio a uma dist t
-    def get_point(self, t: float) -> "Ponto": return self.origin + (self.direction.__mul_escalar__(t))
-    
-    #soma dois raios (origem e direção)
-    def __add__(self, other: "Ray") -> "Ray": return Ray(self.origin.__add__(other.origin), self.direction.__add__(other.direction))
-    
-    def __sub__(self, other: "Ray") -> "Ray": return Ray(self.origin.__sub__(other.origin), self.direction.__sub__(other.direction))
-    def __mul__(self, other: float) -> "Ray": return Ray(self.origin.__mul__(other), self.direction.__mul__(other))
-    def __truediv__(self, other: float) -> "Ray": return Ray(self.origin.__truediv__(other), self.direction.__truediv__(other))
-
 class Camera:
     def __init__(self, target: "Ponto", position: "Ponto", up: "Vetor", vres: int = 300, hres: int = 300):
         #inicializa a câmera c/ pos, alvo e vetor up
